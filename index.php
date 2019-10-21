@@ -13,11 +13,19 @@
                 <div class="card mt-3">
                     <h5 class="card-header"><?php the_title(); ?></h5>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <?php the_post_thumbnail('full', ['class' => 'img-fluid']); ?>
                         <div>
-                            <?php the_content(); ?>
+                            <?php if( is_home() ): ?>
+                                <?php the_excerpt() ; ?>
+                            <?php else: ?>
+                                <?php the_content(); ?>
+                            <?php endif; ?>
                         </div>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                        <?php if( !is_single() ): ?>
+                            <a href="<?php the_permalink(); ?>" class="btn btn-primary">Read More</a>
+                        <?php endif; ?>
+
                     </div>
                 </div>
             <?php endwhile; ?>
