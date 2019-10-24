@@ -3,7 +3,7 @@
 function addCustomThemeFiles_1902(){
 
     wp_enqueue_style('bootstrapCSS1902', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '4.3.1', 'all');
-    wp_enqueue_style('customCSS1902', get_template_directory_uri() . '/assets/css/style.css', array(), '0.0.2', 'all');
+    wp_enqueue_style('customCSS1902', get_template_directory_uri() . '/assets/css/style.css', array(), '0.0.4', 'all');
 
     wp_enqueue_script('jquery');
     wp_enqueue_script('bootstrapJS1902', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '4.3.1', true );
@@ -49,3 +49,5 @@ $customHeaderDefaults = array(
     'default-image' => get_template_directory_uri() . '/assets/images/leafBoat.jpg'
 );
 add_theme_support('custom-header', $customHeaderDefaults);
+
+add_theme_support('wp-block-styles');

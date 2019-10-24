@@ -1,10 +1,10 @@
 <?php get_header(); ?>
 
 <div class="container">
-    <div class="row">
+    <div class="row my-3">
         <?php if(has_nav_menu('side_navigation')): ?>
             <div class="col-12 col-md-3">
-                <div class="card h-100 mb-2 mt-2 p-2">
+                <div class="card h-100">
                     <?php wp_nav_menu( array(
                         'theme_location' => 'side_navigation',
                         'menu_class' => 'list-group list-group-flush',
@@ -14,10 +14,10 @@
                 </div>
             </div>
         <?php endif; ?>
-        <div class="col">
+        <div class="col h-100">
             <?php if( have_posts() ): ?>
                 <?php while( have_posts() ): the_post(); ?>
-                    <div class="card my-2 h-100">
+                    <div class="card h-100">
                         <h5 class="card-header"><?php the_title(); ?></h5>
                         <div class="card-body">
                             <div class="row">
