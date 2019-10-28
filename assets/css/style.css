@@ -56,3 +56,8 @@
 .footerNav li a{
     color: white;
 }
+
+.fullVideo iframe{
+    max-width: 100%;
+    height: auto;
+}
