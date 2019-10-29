@@ -1,7 +1,5 @@
 <?php get_header(); ?>
 
-<!-- <img src="<?php echo get_header_image(); ?>" alt="" class="img-fluid"> -->
-
 <?php if(has_header_image()): ?>
     <div class="container-fluid p-0">
         <div class="headerImage" style="background-image:url(<?php echo get_header_image(); ?>);">
@@ -27,10 +25,44 @@
                 </div>
             <?php endwhile; ?>
         </div>
+        <?php
+            $count_posts = wp_count_posts();
+            $published_posts = $count_posts->publish;
+
+            $default_posts_per_page = get_option( 'posts_per_page' );
+         ?>
+         <?php if($published_posts > $default_posts_per_page): ?>
+             <?php
+                $args = array(
+                    'type' => 'array'
+                );
+                $paginationLinks = paginate_links( $args );
+              ?>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <?php foreach($paginationLinks as $link): ?>
+                        <li class="page-item">
+                            <?php echo str_replace('page-numbers', 'page-link', $link); ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </nav>
+
+            <div class="row">
+                <div class="col">
+                    <?php if(get_previous_posts_link()): ?>
+                        <?php echo str_replace('<a', '<a class="btn btn-outline-primary"', get_previous_posts_link()); ?>
+                    <?php endif ?>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <?php if(get_next_posts_link()): ?>
+                        <?php echo str_replace('<a', '<a class="btn btn-outline-primary"', get_next_posts_link()); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+         <?php endif; ?>
     </div>
 <?php endif; ?>
-
-
-
 
 <?php get_footer(); ?>
