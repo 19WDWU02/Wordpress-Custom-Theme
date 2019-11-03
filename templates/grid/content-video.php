@@ -18,10 +18,10 @@
     };
  ?>
 
-<div class="card h-100 border border-warning">
+<div class="card h-100 border border-warning blogCard">
     <div class="card-body">
         <h5 class="card-title"><?php the_title(); ?></h5>
-        <?php if($firstVideoBlock): ?>
+        <?php if(isset($firstVideoBlock)): ?>
             <div class="fullVideo">
                 <?php echo apply_filters( 'the_content', render_block( $firstVideoBlock ) ); ?>
             </div>

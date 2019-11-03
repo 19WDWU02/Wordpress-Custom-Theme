@@ -1,4 +1,4 @@
-<div class="card h-100 border border-primary">
+<div class="card h-100 border border-primary blogCard">
     <?php the_post_thumbnail('medium', ['class' => 'card-img-top']); ?>
     <div class="card-body">
         <h5 class="card-title"><?php the_title(); ?></h5>

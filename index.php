@@ -1,9 +1,16 @@
 <?php get_header(); ?>
-
 <div class="container">
     <div class="row my-3">
         <?php if(has_nav_menu('side_navigation')): ?>
-            <div class="col-12 col-md-3 py-2">
+            <?php
+                $position = get_theme_mod('1902_sidebarPosition');
+                if($position === 'left'){
+                    $side = 'order-0';
+                } else {
+                    $side = 'order-2';
+                }
+             ?>
+            <div class="col-12 col-md-3 py-2  <?php echo $side; ?>">
                 <div class="card h-100">
                     <?php wp_nav_menu( array(
                         'theme_location' => 'side_navigation',

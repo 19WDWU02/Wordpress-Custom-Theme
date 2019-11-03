@@ -17,12 +17,21 @@
 <?php endif; ?>
 
 <?php if( have_posts() ): ?>
+    <?php
+        $cardLayout = get_theme_mod('1902_frontPageCard');
+     ?>
     <div class="container py-5">
         <div class="row">
             <?php while( have_posts() ): the_post(); ?>
-                <div class="col-12 col-md-4 mb-3">
-                    <?php get_template_part('templates/content', get_post_format()); ?>
-                </div>
+                <?php if($cardLayout === 'grid'): ?>
+                    <div class="col-12 col-md-4 mb-3">
+                        <?php get_template_part('templates/grid/content', get_post_format()); ?>
+                    </div>
+                <?php else: ?>
+                    <div class="col-12 pb-2">
+                        <?php get_template_part('templates/row/content', get_post_format()); ?>
+                    </div>
+                <?php endif; ?>
             <?php endwhile; ?>
         </div>
         <?php
@@ -64,5 +73,52 @@
          <?php endif; ?>
     </div>
 <?php endif; ?>
+
+<?php if(get_theme_mod('1902_aboutImage')): ?>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <img src="<?php echo get_theme_mod('1902_aboutImage'); ?>" alt="" class="img-fluid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <h3 class="display-4"><?php echo get_theme_mod('1902_aboutText'); ?></h3>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+
+
+
+
+
+<?php
+    for ($i=1; $i <= 3 ; $i++) {
+        if(get_theme_mod('1902_slide_'.$i)){
+            $firstSlide = $i;
+            break;
+        }
+    }
+ ?>
+
+ <?php if(isset($firstSlide)): ?>
+     <div class="container">
+         <div id="homeCarousel" class="carousel slide" data-ride="carousel">
+             <div class="carousel-inner">
+                <?php for ($i=1; $i <= 3 ; $i++): ?>
+                    <?php if(get_theme_mod('1902_slide_'.$i)): ?>
+                       <div class="carousel-item <?php if($firstSlide === $i){ echo 'active';} ?>">
+                           <img src="<?php echo get_theme_mod('1902_slide_'.$i); ?>" class="d-block w-100" alt="...">
+                       </div>
+                    <?php endif; ?>
+                <?php endfor; ?>
+             </div>
+         </div>
+     </div>
+ <?php endif; ?>
+
+
 
 <?php get_footer(); ?>
