@@ -16,6 +16,28 @@
     </div>
 <?php endif; ?>
 
+<?php if(get_theme_mod('featuredPost')): ?>
+    <?php
+        $featuredPostQuery = new WP_Query( array( 'p' => get_theme_mod('featuredPost') ) );
+    ?>
+    <?php if( $featuredPostQuery->have_posts() ): ?>
+        <?php while( $featuredPostQuery->have_posts() ): $featuredPostQuery->the_post(); ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Featured Post</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h2><?php the_title(); ?></h2>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    <?php endif; ?>
+<?php endif; ?>
+
 <?php if( have_posts() ): ?>
     <?php
         $cardLayout = get_theme_mod('1902_frontPageCard');
@@ -88,11 +110,6 @@
         </div>
     </div>
 <?php endif; ?>
-
-
-
-
-
 
 <?php
     for ($i=1; $i <= 3 ; $i++) {

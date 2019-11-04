@@ -135,34 +135,10 @@ function mytheme_customize_register( $wp_customize ) {
      )
    ) ) );
 
-
-
-
-
-
-
-
    $wp_customize->add_section( '1902_slideshowSection' , array(
        'title'      => __( 'Slideshow', '1902Custom' ),
        'priority'   => 30,
    ) );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    for ($i=1; $i <=3 ; $i++) {
        $wp_customize->add_setting( '1902_slide_'.$i , array(
@@ -179,8 +155,37 @@ function mytheme_customize_register( $wp_customize ) {
 
 
 
+   $wp_customize->add_section( 'featuredSection' , array(
+        'title'      => __( 'Featured Info', '1902Custom' ),
+        'priority'   => 30,
+    ) );
+
+    $wp_customize->add_setting( 'featuredPost' , array(
+        'default'   => '',
+        'transport' => 'refresh',
+    ) );
 
 
+    $allPosts = get_posts(array(
+        'numberposts' => -1
+    ));
+    // var_dump($allPosts);
+    $allChoices = array();
+    $allChoices[''] = 'Please Choose a Featured Post';
+    foreach ($allPosts as $post) {
+        $allChoices[$post->ID] = $post->post_title;
+    }
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize,'featuredPostControl',
+            array(
+                'label'          => __( 'Featured Posts', '1902Custom' ),
+                'section'        => 'featuredSection',
+                'settings'       => 'featuredPost',
+                'type'           => 'select',
+                'choices'        => $allChoices
+            )
+        )
+    );
 
 
 }

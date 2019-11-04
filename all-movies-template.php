@@ -36,6 +36,8 @@
                  <div class="col-12 col-sm-3">
                     <div class="card p-3">
                         <h4><?php the_title(); ?></h4>
+                        <p>Year Released: <?php echo get_post_meta(get_the_ID(), '1902_year', true); ?></p>
+
                     </div>
                  </div>
              <?php endwhile; ?>
