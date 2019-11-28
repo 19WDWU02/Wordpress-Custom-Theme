@@ -135,6 +135,22 @@ function mytheme_customize_register( $wp_customize ) {
      )
    ) ) );
 
+   $wp_customize->add_setting( '1902_moviesPageCard' , array(
+       'default'   => 'grid',
+       'transport' => 'refresh',
+   ) );
+
+   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, '1902_moviesPageCardControl', array(
+     'label'      => __( 'Movies Card Layout', '1902Custom' ),
+     'section'    => '1902_layout_section',
+     'settings'   => '1902_moviesPageCard',
+     'type'       => 'radio',
+     'choices'    => array(
+         'grid' => 'Grid',
+         'rows' => 'Rows'
+     )
+   ) ) );
+
    $wp_customize->add_section( '1902_slideshowSection' , array(
        'title'      => __( 'Slideshow', '1902Custom' ),
        'priority'   => 30,

@@ -39,8 +39,9 @@
 <?php endif; ?>
 
 <?php if( have_posts() ): ?>
+
     <?php
-        $cardLayout = get_theme_mod('1902_frontPageCard');
+        $cardLayout = get_theme_mod('1902_frontPageCard', 'grid');
      ?>
     <div class="container py-5">
         <div class="row">

@@ -7,6 +7,8 @@
 
 <?php get_header(); ?>
 
+<?php echo get_theme_mod('1902_moviesPageCard'); ?>
+
 <div class="container">
     <div class="row my-3">
         <div class="col">
